@@ -1,2 +1,2 @@
 # 10tenweb
-## [10tenweb](https://supabase.com/dashboard/org/lwypzzxaaeffhnkjqjwy)
+## [Supabase 10tenweb](https://supabase.com/dashboard/org/lwypzzxaaeffhnkjqjwy)
