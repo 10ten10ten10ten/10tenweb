@@ -14,7 +14,15 @@ import (
 type Config struct {
 	Title   string      `yaml:"title"`
 	Company Company     `yaml:"company"`
+	Auth    AuthConfig  `yaml:"auth"`
 	Login   LoginConfig `yaml:"login"`
+}
+
+// AuthConfig represents the Supabase settings
+type AuthConfig struct {
+	Enabled     bool   `yaml:"enabled"`
+	SupabaseURL string `yaml:"supabaseUrl"`
+	SupabaseKey string `yaml:"supabaseKey"`
 }
 
 // LoginConfig represents the social login settings
@@ -26,8 +34,8 @@ type LoginConfig struct {
 // Provider represents a single social login provider
 type Provider struct {
 	Name  string `yaml:"name"`
+	ID    string `yaml:"id"`
 	Icon  string `yaml:"icon"`
-	URL   string `yaml:"url"`
 	Class string `yaml:"class"`
 }
 
@@ -94,78 +102,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	// 7. Generate Auth Pages
-	if len(config.Login.Providers) > 0 {
-		if err := generateAuthPages(config.Login.Providers); err != nil {
-			fmt.Printf("Error generating auth pages: %v\n", err)
-			os.Exit(1)
-		}
-	}
-
-	fmt.Println("Successfully generated web/index.html, auth pages, and copied assets.")
-}
-
-func generateAuthPages(providers []Provider) error {
-	authDir := "web/auth"
-	if err := os.MkdirAll(authDir, 0755); err != nil {
-		return err
-	}
-
-	// Simple template for auth pages
-	const authPageTmpl = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login with {{.Name}}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <style>
-        body { display: flex; align-items: center; justify-content: center; height: 100vh; text-align: center; }
-        .spinner { font-size: 3rem; color: var(--accent-color); margin-bottom: 1rem; }
-    </style>
-</head>
-<body>
-    <div class="card">
-        <div class="spinner"><i class="fa-solid fa-circle-notch fa-spin"></i></div>
-        <h2>Connection to {{.Name}}...</h2>
-        <p>This is a static site demo.</p>
-        <br>
-        <a href="../index.html" class="social-btn" style="display: inline-flex;">
-            <i class="fa-solid fa-arrow-left"></i> Back to Home
-        </a>
-    </div>
-    <script>
-        // Check for theme preference
-        const currentTheme = localStorage.getItem('theme') || 
-             (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        if (currentTheme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
-    </script>
-</body>
-</html>`
-
-	tmpl, err := template.New("auth").Parse(authPageTmpl)
-	if err != nil {
-		return err
-	}
-
-	for _, provider := range providers {
-		// Filename: Google -> web/auth/Google.html
-		filename := filepath.Join(authDir, provider.Name+".html")
-		f, err := os.Create(filename)
-		if err != nil {
-			return err
-		}
-
-		err = tmpl.Execute(f, provider)
-		f.Close()
-		if err != nil {
-			return err
-		}
-	}
-
-	return nil
+	fmt.Println("Successfully generated web/index.html and copied assets.")
 }
 
 // copyDir recursively copies a directory tree, attempting to preserve permissions.

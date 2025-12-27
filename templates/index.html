@@ -17,7 +17,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="static/css/style.css">
 </head>
 
 <body style="opacity: 0; transition: opacity 0.5s ease;">
@@ -56,10 +56,10 @@
             <h3>{{.Login.Title}}</h3>
             <div class="social-buttons">
                 {{ range .Login.Providers }}
-                <a href="{{.URL}}" class="social-btn {{.Class}}">
+                <button class="social-btn {{.Class}}" onclick="handleLogin('{{.ID}}')" style="cursor: pointer;">
                     <i class="{{.Icon}}"></i>
                     <span>Sign in with {{.Name}}</span>
-                </a>
+                </button>
                 {{ end }}
             </div>
         </section>
@@ -112,7 +112,18 @@
     <script src="https://unpkg.com/htmx.org@1.9.10"
         integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
         crossorigin="anonymous"></script>
-    <script src="js/script.js"></script>
+
+    <!-- Supabase SDK & Config -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        window.AUTH_CONFIG = {
+            enabled: {{.Auth.Enabled }},
+        supabaseUrl: "{{.Auth.SupabaseURL}}",
+            supabaseKey: "{{.Auth.SupabaseKey}}"
+        };
+    </script>
+    <script src="static/js/script.js"></script>
+    <script src="static/js/auth.js"></script>
 </body>
 
 </html>

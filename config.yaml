@@ -6,18 +6,22 @@ company:
   companyEmail: "contact@10ten.hu"
   companyPhone: "+36 (20) 123-4567"
   companyYear: "2025"
+auth:
+  enabled: true
+  supabaseUrl: "https://isqdkrdrbgqmtrfhqfev.supabase.co"
+  supabaseKey: "sb_publishable_xprgLu5Y16svQBPseqdT_w_qmFsgaf6"
 login:
   title: "Join our Community"
   providers:
     - name: "Google"
+      id: "google"
       icon: "fa-brands fa-google"
-      url: "auth/Google.html"
       class: "btn-google"
     - name: "Facebook"
+      id: "facebook"
       icon: "fa-brands fa-facebook-f"
-      url: "auth/Facebook.html"
       class: "btn-facebook"
     - name: "Apple"
+      id: "apple"
       icon: "fa-brands fa-apple"
-      url: "auth/Apple.html"
       class: "btn-apple"

@@ -17,7 +17,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="static/css/style.css">
 </head>
 
 <body style="opacity: 0; transition: opacity 0.5s ease;">
@@ -56,20 +56,20 @@
             <h3>Join our Community</h3>
             <div class="social-buttons">
                 
-                <a href="auth/Google.html" class="social-btn btn-google">
+                <button class="social-btn btn-google" onclick="handleLogin('google')" style="cursor: pointer;">
                     <i class="fa-brands fa-google"></i>
                     <span>Sign in with Google</span>
-                </a>
+                </button>
                 
-                <a href="auth/Facebook.html" class="social-btn btn-facebook">
+                <button class="social-btn btn-facebook" onclick="handleLogin('facebook')" style="cursor: pointer;">
                     <i class="fa-brands fa-facebook-f"></i>
                     <span>Sign in with Facebook</span>
-                </a>
+                </button>
                 
-                <a href="auth/Apple.html" class="social-btn btn-apple">
+                <button class="social-btn btn-apple" onclick="handleLogin('apple')" style="cursor: pointer;">
                     <i class="fa-brands fa-apple"></i>
                     <span>Sign in with Apple</span>
-                </a>
+                </button>
                 
             </div>
         </section>
@@ -122,7 +122,18 @@
     <script src="https://unpkg.com/htmx.org@1.9.10"
         integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
         crossorigin="anonymous"></script>
-    <script src="js/script.js"></script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        window.AUTH_CONFIG = {
+            enabled:  true ,
+        supabaseUrl: "https:\/\/isqdkrdrbgqmtrfhqfev.supabase.co",
+            supabaseKey: "sb_publishable_xprgLu5Y16svQBPseqdT_w_qmFsgaf6"
+        };
+    </script>
+    <script src="static/js/script.js"></script>
+    <script src="static/js/auth.js"></script>
 </body>
 
 </html>
