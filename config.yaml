@@ -1,0 +1,23 @@
+title: "10ten Design"
+company:
+  companyShortName: "10ten"
+  companyLongName: "10ten Design And Building"
+  companyAddress: "Harangvirag utca 8, Budapest, Hungary"
+  companyEmail: "contact@10ten.hu"
+  companyPhone: "+36 (20) 123-4567"
+  companyYear: "2025"
+login:
+  title: "Join our Community"
+  providers:
+    - name: "Google"
+      icon: "fa-brands fa-google"
+      url: "auth/Google.html"
+      class: "btn-google"
+    - name: "Facebook"
+      icon: "fa-brands fa-facebook-f"
+      url: "auth/Facebook.html"
+      class: "btn-facebook"
+    - name: "Apple"
+      icon: "fa-brands fa-apple"
+      url: "auth/Apple.html"
+      class: "btn-apple"

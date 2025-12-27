@@ -1,4 +1,4 @@
-window.CONFIG = {
+{
     "title": "10ten Design",
     "company": {
         "companyShortName": "10ten",
@@ -8,4 +8,4 @@ window.CONFIG = {
         "companyPhone": "+36 (20) 123-4567",
         "companyYear": "2025"
     }
-};
+}
